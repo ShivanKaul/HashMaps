@@ -14,7 +14,7 @@ function selectionOnClick(info, tab) {
 
 function sendTextToGM(inString) {
 
-	var input = encodeURIComponent(inString)+"&t=crmtb01&f=rc";
+	var input = encodeURIComponent(inString);
 	optionedWA(input);
 
 }
@@ -25,10 +25,10 @@ function optionedWA(input) {
 	
 	if(localStorage["open_in"] == "sametab") {	
 		chrome.tabs.getSelected( undefined, function(tab) {
-			chrome.tabs.update(tab.id, {url: "http://www.maps.google.com/input/?i="+input}, undefined);
+			chrome.tabs.update(tab.id, {url: "http://www.maps.google.com/maps?q="+input}, undefined);
 		}); 
 	} else {
-		chrome.tabs.create({"url" : "http://www.maps.google.com/input/?i=" + input, "active" : true});
+		chrome.tabs.create({"url" : "http://www.maps.google.com/maps?q=" + input, "active" : true});
 	}
 	
 }
@@ -59,7 +59,7 @@ function omniGM(inString) {
 	} else {
 		var input = encodeURIComponent(inString);	
 		chrome.tabs.getSelected( undefined, function(tab) {
-			chrome.tabs.update(tab.id, {url: "http://www.maps.google.com/input/?t=crmtb01&f=ob&i="+input}, undefined);
+			chrome.tabs.update(tab.id, {url: "http://www.maps.google.com/maps?q="+input}, undefined);
 		}); 
 	}
 }
