@@ -3,14 +3,13 @@
 
   "name": "OmniMap",
   "description": "Adding Google Maps search to Omnibox.",
-  "version": "0.9",
+  "version": "1.0",
 
-  "permissions": [
-    "activeTab"
-  ],
   "background": {
       "scripts": [ "src/background.js" ]
    },
+  "permissions": [ "contextMenus", "tabs", "https://*.www.google.ca/*" ],
+
   "omnibox": { "keyword" : "#" },
   "browser_action": {
     "default_title": "Google Maps searching from the omnibox."
