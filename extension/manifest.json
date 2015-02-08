@@ -1,16 +1,18 @@
 {
+  "manifest_version": 2,
+
   "name": "OmniMap",
   "description": "Adding Google Maps search to Omnibox.",
   "version": "0.9",
-"permissions": [
-  "activeTab"
-],
-"background": {
-  "scripts": ["background.js"],
-    "persistent": false
-  },
+
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+      "scripts": [ "src/background.js" ]
+   },
+  "omnibox": { "keyword" : "m" },
   "browser_action": {
     "default_title": "Google Maps searching from the omnibox."
-  },
-  "manifest_version": 2
+  }
 }
