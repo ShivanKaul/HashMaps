@@ -2,7 +2,7 @@ OmniMap
 -------------
 Search Google Maps directly from the Chrome Omnibox.
 
- In the Omnibox (the address bar in Google Chrome), simply type "#" (without quotes) and press Tab. Now, type in the address/name-of-establishment you need directions to. And that's it. Yes, it's that simple.
+ In the Omnibox (the address bar in Google Chrome), simply type "#" (without quotes) and press Tab. Now, type in the address/name-of-establishment you need directions to. That's it. Yes, it's that simple.
 
  If you want directions to-and-from, simply type "X to Y", and it works. 
 
