@@ -74,13 +74,7 @@ function inputChangedGM(inString, suggest) {
 
 function optionedGM(input) {
 	
-	if(localStorage["open_in"] == "sametab") {	
-		chrome.tabs.getSelected( undefined, function(tab) {
-			chrome.tabs.update(tab.id, {url: "https://www.maps.google.com/maps?q="+input}, undefined);
-		}); 
-	} else {
 		chrome.tabs.create({"url" : "https://www.maps.google.com/maps?q=" + input, "active" : true});
-	}
 	
 }
 
@@ -99,14 +93,8 @@ chrome.contextMenus.create({
 
 function omniGM(inString) {
 	if(inString=="") {
-		if(localStorage["open_in"] == "sametab") {
-			chrome.tabs.getSelected( undefined, function(tab) {
-				chrome.tabs.update(tab.id, {url: "https://maps.google.com/"}, undefined);
-				window.close();	
-			}); 
-		} else {
+
 			chrome.tabs.create({"url" : "https://www.maps.google.com/", "active" : true});
-		}
 	} else {
 		var input = encodeURIComponent(inString);	
 		chrome.tabs.getSelected( undefined, function(tab) {
