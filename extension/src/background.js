@@ -1,22 +1,22 @@
 /* 
-	function omniGM
-	- naviagates current tab to Google Maps
+	function navigate
+	- navigates current tab to Google Maps with search terms
 	- used by omnibox
  */
 
-function omniGM(inString) {
-	if(inString=="") {
+function navigate(inputString) {
+	if(inputString=="") {
 		// If empty, then go to Google Maps
 		chrome.tabs.create({"url" : "https://www.google.ca/maps/search/", "active" : true});
 	} else {
-		var input = encodeURIComponent(inString);	
+		var inputURI = encodeURIComponent(inputString);	
 		chrome.tabs.getSelected( undefined, function(tab) {
-			chrome.tabs.update(tab.id, {url: "https://www.google.ca/maps/search/"+input}, undefined);
+			chrome.tabs.update(tab.id, {url: "https://www.google.ca/maps/search/"+inputURI}, undefined);
 		}); 
 	}
 }
 
 
-//"omnibox" (reacting to users entering "#" in the URL input box)
-chrome.omnibox.onInputEntered.addListener(omniGM);
+// Reacting to users entering "#" in the omnibox
+chrome.omnibox.onInputEntered.addListener(navigate);
 chrome.omnibox.setDefaultSuggestion({"description" : "Find directions to '%s' with Google Maps"});

@@ -8,10 +8,7 @@
   "background": {
       "scripts": [ "src/background.js" ]
    },
-  "permissions": [ "contextMenus", "tabs", "https://*.www.google.ca/*" ],
+  "permissions": [ "tabs", "https://*.www.google.ca/*" ],
 
-  "omnibox": { "keyword" : "#" },
-  "browser_action": {
-    "default_title": "Google Maps searching from the omnibox."
-  }
+  "omnibox": { "keyword" : "#" }
 }
