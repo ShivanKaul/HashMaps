@@ -8,14 +8,14 @@ function selectionOnClick(info, tab) {
 }
 
 /* 
-	function sendTextToWA
+	function sendTextToGM
 	- opens a tab Google Maps using the supplied input
  */
 
 function sendTextToGM(inString) {
 
 	var input = encodeURIComponent(inString);
-	optionedWA(input);
+	optionedGM(input);
 
 }
 
@@ -72,7 +72,7 @@ function inputChangedGM(inString, suggest) {
 
 // helper function to deal with the "open in" option
 
-function optionedWA(input) {
+function optionedGM(input) {
 	
 	if(localStorage["open_in"] == "sametab") {	
 		chrome.tabs.getSelected( undefined, function(tab) {
@@ -92,8 +92,8 @@ chrome.contextMenus.create({
 }); 
 
 /* 
-	function omniWA
-	- naviagates current tab to W|A
+	function omniGM
+	- naviagates current tab to Google Maps
 	- used by omnibox
  */
 
