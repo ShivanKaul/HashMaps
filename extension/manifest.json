@@ -1,14 +1,15 @@
 {
   "manifest_version": 2,
 
-  "name": "OmniMap",
-  "description": "Adding Google Maps search to Omnibox.",
-  "version": "1.0",
+  "name": "HashMaps",
+  "short_name": "#",
+  "description": "Adding Google Maps search to your address bar.",
+  "version": "1.1",
 
   "background": {
       "scripts": [ "src/background.js" ]
    },
-  "permissions": [ "tabs", "https://*.www.google.ca/*" ],
+  "permissions": [ "tabs" ],
 
   "omnibox": { "keyword" : "#" }
 }
