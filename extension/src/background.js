@@ -19,4 +19,4 @@ function navigate(inputString) {
 
 // Reacting to users entering "#" in the omnibox
 chrome.omnibox.onInputEntered.addListener(navigate);
-chrome.omnibox.setDefaultSuggestion({"description" : "Search directions from X to Y"});
+chrome.omnibox.setDefaultSuggestion({"description" : "Get directions for %s"});
