@@ -63,7 +63,7 @@ function suggest(inputString, suggestions) {
 
 					resultsNames.push({
 						"content" : name, 
-						"description" : '<match>' + name + '</match>'
+						"description" : "Did you mean: " + '<match>' + name + '</match>'
 					});
 				}
 				suggestions(resultsNames);
@@ -98,7 +98,7 @@ function suggest(inputString, suggestions) {
 
 					resultsNames.push({
 						"content" : origin + "to" + dest, 
-						"description" : '<match>' + origin + '</match>' + " to " + '<match>' + dest + '</match>'
+						"description" : "Did you mean: " + '<match>' + origin + '</match>' + " to " + '<match>' + dest + '</match>'
 						// TODO: put first name in bold and rest of the address in dim
 					});
 				}
