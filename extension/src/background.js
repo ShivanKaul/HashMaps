@@ -27,19 +27,20 @@ function suggest(inputString, suggestions) {
 		return;
 	}
 
-	var inputURI = encodeURIComponent(inputString);
+	// var inputURI = encodeURIComponent(inputString);
 
 	// if the search query contains "to", split it up and find suggestions for both strings
-	if (inputURI.indexOf("to") > -1) {
-		var firstPart = inputURI.substring(0, inputURI.indexOf("to") - 1);
-		firstPart = firstPart.trim();
-		var secondPart = inputURI.substring(inputURI.indexOf("to") + 2);
+	if (inputString.indexOf("to") > -1) {
+		var firstPart = inputString.substring(0, inputString.indexOf("to") - 1);
+		firstPart = encodeURIComponent(firstPart);
+		var secondPart = inputString.substring(inputString.indexOf("to") + 2);
 		secondPart = secondPart.trim();
 	}
 
 	// if user hasn't entered a search term for destination, or not even a 'to'
 	if (secondPart=="" || (typeof secondPart === 'undefined')) {
-		var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + inputURI;
+		var inputURI = encodeURIComponent(inputString);
+		var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + inputURI + "&region=ca";
 		$.ajax({
 			url: queryURL,
 			dataType: "json",
@@ -68,11 +69,43 @@ function suggest(inputString, suggestions) {
 				suggestions(resultsNames);
 
 			}
-		})
+		});
 	}
 	else {
-		console.log("what"+secondPart);
-		// var queryURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" + firstPart + "&destination=" + secondPart;
+		console.log(secondPart);
+		secondPart = encodeURIComponent(secondPart);
+		var queryURL = "http://maps.googleapis.com/maps/api/directions/json?origin=" + firstPart + "&destination=" + secondPart + "&region=ca";
+		$.ajax({
+			url: queryURL,
+			dataType: "json",
+			statusCode: {
+	        	502: function () {
+	        		console.log("Error 502 thrown.")
+	        	}
+	        },
+			success: function (queryResult) {
+				// get array of all software projects
+				var results = queryResult.routes;
+				// if no suggestions found
+				if(results.length == 0) {return;}
+				// initialize software names
+				var resultsNames = [];
+
+				var num = Math.min(5, results.length); // a maximum of 5 suggestions
+				for (i = 0; i < num; i++) {
+					var origin = results[i].legs[0].start_address;
+					var dest = results[i].legs[0].end_address;
+
+					resultsNames.push({
+						"content" : origin + "to" + dest, 
+						"description" : '<match>' + origin + '</match>' + " to " + '<match>' + dest + '</match>'
+						// TODO: put first name in bold and rest of the address in dim
+					});
+				}
+				suggestions(resultsNames);
+
+			}
+		});
 	}
 }
 
