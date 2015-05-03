@@ -15,6 +15,6 @@
   "background": {
       "scripts": [ "src/background.js", "src/jquery-1.11.2.min.js" ]
    },
-  "permissions": [ "http://maps.googleapis.com/maps/api/*" ],
+  "permissions": [ "http://maps.googleapis.com/maps/api/directions/*", "https://maps.googleapis.com/maps/api/geocode/*" ],
   "omnibox": { "keyword" : "#" }
 }
