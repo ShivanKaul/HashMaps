@@ -43,7 +43,7 @@ function navigate(inputString) {
 		// If we have two search terms, then find directions in between them.
 
 		else {
-			console.log(secondPart);
+			// console.log(secondPart);
 			secondPart = encodeURIComponent(secondPart);
 			var queryURLdir = "https://www.google.ca/maps/dir/" + firstPart + "\/" + secondPart;
 			chrome.tabs.getSelected(undefined, function(tab) {
@@ -68,7 +68,7 @@ function suggest(inputString, suggestions) {
 	// if the search query contains "to", split it up and find suggestions for both strings
 
 	if (inputString.indexOf(" to") > -1) {
-		console.log("Found to")
+		// console.log("Found to")
 		var firstPart = inputString.substring(0, inputString.indexOf(" to"));
 		firstPart = encodeURIComponent(firstPart);
 		// ensure correct parsing of "from" and "to" parts of the search input
@@ -87,7 +87,7 @@ function suggest(inputString, suggestions) {
 
 		// use the normal geocoding api to get json response
 
-		var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + inputURI;
+		var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + inputURI + "&region=" + country;
 		$.ajax({
 			url: queryURL,
 			dataType: "json",
@@ -122,8 +122,8 @@ function suggest(inputString, suggestions) {
 		// console.log("Second part: " + secondPart);  
 		secondPart = encodeURIComponent(secondPart);
 
-		var queryURLO = "https://maps.googleapis.com/maps/api/geocode/json?address=" + firstPart;
-		var queryURLD = "https://maps.googleapis.com/maps/api/geocode/json?address=" + secondPart;
+		var queryURLO = "https://maps.googleapis.com/maps/api/geocode/json?address=" + firstPart + "&region=" + country;
+		var queryURLD = "https://maps.googleapis.com/maps/api/geocode/json?address=" + secondPart + "&region=" + country;
 		
 		function sendSecondAJAX() {
 			return $.ajax({
@@ -131,7 +131,7 @@ function suggest(inputString, suggestions) {
 			})
 		}
 
-		// Use promises
+		// Use promises in order to nest AJAX calls
 		var promise = sendSecondAJAX()
 
 		// Final suggestions list
