@@ -1,7 +1,11 @@
 HashMaps
 -------------
 
-[HashMaps](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion) lets you search for places and directions straight from the address bar. [Blog entry](http://shivankaulsahib.me/blog/2015/02/28/hashmaps.html).
+[HashMaps](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion) lets you search for places and directions straight from the address bar. 
+
+**[Blog entry](http://shivankaulsahib.me/blog/2015/02/28/hashmaps.html).**
+
+[Icon credits](http://www.flaticon.com/authors/freepik).
 
 ####How to Use:
 In the address bar (called an Omnibox in Chrome), type in # (the hash/pound/hashtag symbol), and press either Space or Tab. Now look for places or directions.
