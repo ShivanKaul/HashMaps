@@ -14,9 +14,9 @@
   "permissions": [
           "storage"
         ],
-  "browser_action": {
-    "default_icon": "images/icon-16.png",
-    "default_popup": "src/popup.html"
+  "options_ui": {
+    "page": "src/options.html",
+    "chrome_style": true
   },
   "background": {
       "scripts": [ "src/js/jquery-1.11.2.min.js", "src/js/background.js", "src/js/get-country-from-ip.js" ]
