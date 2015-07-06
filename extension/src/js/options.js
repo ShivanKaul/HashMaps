@@ -13,7 +13,7 @@ function save_options() {
     status.textContent = 'Addresses saved!';
     setTimeout(function() {
       status.textContent = '';
-    }, 750);
+    }, 1250);
   });
 }
 
@@ -21,8 +21,8 @@ function save_options() {
 // stored in chrome.storage.
 function restore_options() {
   chrome.storage.sync.get({
-    homeAddress: '4 Privet Drive, Little Whinging, Surrey',
-    workAddress: '420, Paper St. Wilmington, DE 19886'
+    homeAddress: '',
+    workAddress: ''
   }, function(items) {
     document.getElementById('home').value = items.homeAddress;
     document.getElementById('work').value = items.workAddress;

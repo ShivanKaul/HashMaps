@@ -19,5 +19,6 @@ Type in the origin and the destination separated by a 'to', and press Enter. Exa
 Great for when the internet speed is slow and you don't want to take the unnecessary step of first loading the Google Maps landing page. 
 
 ####What's New:
+- Stored **Home** and **Work** locations: There's an Options page for the extension where you can set addresses for your home and work place. Now, when you type in '**Home**' or '**Work**' as a search query the extension will automatically use your stored address.
 - Region Biasing: Using some Geolocating, I'm able to get the user's country code which I then use to bias the Google Maps API results, [extremely unsuccessfully](http://stackoverflow.com/questions/2647086/googles-geocoder-returns-wrong-country-ignoring-the-region-hint). 
 - Suggestions! Start typing and see suggested locations. Don't worry, your search history isn't saved at all: all suggestions are created dynamically when you type by smartly interacting with the Google Maps API.

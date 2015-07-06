@@ -1,9 +1,43 @@
+var home;
+var work;
+
+/* 
+	function get_options
+	- if user has defined addresses, get them
+	- used to catch keywords entered by user and use them
+ */
+function get_options() {
+  chrome.storage.sync.get({
+  	homeAddress: '',
+  	workAddress: ''
+  }, function(items) {
+    home = items.homeAddress;
+    work = items.workAddress;
+  });
+}
+
+/* 
+	function get_correct_search_term
+	- if user has defined addresses, use them instead of 'home' or 'work' or whatever. Then encode
+	- else, simply uri encode
+ */
+ function get_correct_search_term(term) {
+ 	term = term.trim()
+ 	if ("home" === term) {
+ 		return encodeURIComponent(home);
+ 	}
+ 	else if ("work" === term) {
+ 		return encodeURIComponent(work);
+ 	}
+ 	else return encodeURIComponent(term);
+ }
+
+
 /* 
 	function navigate
 	- navigates current tab to Google Maps with search term (if single place) or to/from (if two places)
 	- used by omnibox
  */
-
 function navigate(inputString) {
 
 	if(inputString=="") {
@@ -19,7 +53,7 @@ function navigate(inputString) {
 
 		if (inputString.indexOf(" to") > -1) {
 			var firstPart = inputString.substring(0, inputString.indexOf(" to"));
-			firstPart = encodeURIComponent(firstPart);
+			firstPart = get_correct_search_term(firstPart);
 			// ensure that the string is parsed correctly around "to"
 			var secondPart = inputString.substring(inputString.indexOf(" to") + 4);
 			secondPart = secondPart.trim();
@@ -32,9 +66,9 @@ function navigate(inputString) {
 		if (secondPart=="" || (typeof secondPart === 'undefined')) {
 			// Correct parsing of destinationA to
 			if (typeof firstPart === 'undefined') {
-				inputURI = encodeURIComponent(inputString);
+				inputURI = get_correct_search_term(inputString);
 			}
-			else inputURI = firstPart
+			else inputURI = firstPart;
 			chrome.tabs.getSelected( undefined, function(tab) {
 				chrome.tabs.update(tab.id, {url: "https://www.google.ca/maps/search/"+inputURI}, undefined);
 			}); 
@@ -44,7 +78,7 @@ function navigate(inputString) {
 
 		else {
 			// console.log(secondPart);
-			secondPart = encodeURIComponent(secondPart);
+			secondPart = get_correct_search_term(secondPart);
 			var queryURLdir = "https://www.google.ca/maps/dir/" + firstPart + "\/" + secondPart;
 			chrome.tabs.getSelected(undefined, function(tab) {
 				chrome.tabs.update(tab.id, {url: queryURLdir}, undefined);
@@ -61,7 +95,7 @@ function suggest(inputString, suggestions) {
 
 	// suggestions is an array of SuggestResults 
 
-	if(inputString=="") {
+	if(inputString == "") {
 		return;
 	}
 
@@ -70,7 +104,7 @@ function suggest(inputString, suggestions) {
 	if (inputString.indexOf(" to") > -1) {
 		// console.log("Found to")
 		var firstPart = inputString.substring(0, inputString.indexOf(" to"));
-		firstPart = encodeURIComponent(firstPart);
+		firstPart = get_correct_search_term(firstPart);
 		// ensure correct parsing of "from" and "to" parts of the search input
 		var secondPart = inputString.substring(inputString.indexOf(" to") + 4);
 		secondPart = secondPart.trim();
@@ -78,10 +112,10 @@ function suggest(inputString, suggestions) {
 
 	// if user hasn't entered a search term for destination, or not even a 'to'
 
-	if (secondPart=="" || (typeof secondPart === 'undefined')) {
+	if (secondPart == "" || (typeof secondPart === 'undefined')) {
 		// Correct parsing of origin
 		if (typeof firstPart === 'undefined') {
-			inputURI = encodeURIComponent(inputString);
+			inputURI = get_correct_search_term(inputString);
 		}
 		else inputURI = firstPart
 
@@ -120,7 +154,7 @@ function suggest(inputString, suggestions) {
 	}
 	else {
 		// console.log("Second part: " + secondPart);  
-		secondPart = encodeURIComponent(secondPart);
+		secondPart = get_correct_search_term(secondPart);
 
 		var queryURLO = "https://maps.googleapis.com/maps/api/geocode/json?address=" + firstPart + "&region=" + country;
 		var queryURLD = "https://maps.googleapis.com/maps/api/geocode/json?address=" + secondPart + "&region=" + country;
@@ -132,7 +166,7 @@ function suggest(inputString, suggestions) {
 		}
 
 		// Use promises in order to nest AJAX calls
-		var promise = sendSecondAJAX()
+		var promise = sendSecondAJAX();
 
 		// Final suggestions list
 		all = []
@@ -180,8 +214,6 @@ function suggest(inputString, suggestions) {
 					}
 					// Send suggestions
 					suggestions(all)
-
-
 				})
 			}
 		});
@@ -189,6 +221,7 @@ function suggest(inputString, suggestions) {
 }
 
 // Reacting to user entering '#'
+chrome.omnibox.onInputChanged.addListener(get_options);
 chrome.omnibox.onInputChanged.addListener(suggest);
 chrome.omnibox.onInputEntered.addListener(navigate);
 chrome.omnibox.setDefaultSuggestion({"description" : "Get directions for %s"});
