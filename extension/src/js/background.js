@@ -38,6 +38,7 @@ function get_options() {
 	- navigates current tab to Google Maps with search term (if single place) or to/from (if two places)
 	- used by omnibox
  */
+ // NOTE: ~bar.indexOf("foo") is a nicer way of saying: if bar contains foo then give truthy value else falsy
 function navigate(inputString) {
 
 	if(inputString=="") {
@@ -51,7 +52,7 @@ function navigate(inputString) {
 
 		// if the input query contains " to", split it up and format url correctly
 
-		if (inputString.indexOf(" to") > -1) {
+		if (~inputString.indexOf(" to")) {
 			var firstPart = inputString.substring(0, inputString.indexOf(" to"));
 			firstPart = get_correct_search_term(firstPart);
 			// ensure that the string is parsed correctly around "to"
@@ -63,14 +64,14 @@ function navigate(inputString) {
 		// or simply has typed in only a single phrase (e.g. "Montreal"), then do a normal
 		// search
 
-		if (secondPart=="" || (typeof secondPart === 'undefined')) {
+		if (secondPart == "" || (typeof secondPart === 'undefined')) {
 			// Correct parsing of destinationA to
 			if (typeof firstPart === 'undefined') {
 				inputURI = get_correct_search_term(inputString);
 			}
 			else inputURI = firstPart;
-			chrome.tabs.getSelected( undefined, function(tab) {
-				chrome.tabs.update(tab.id, {url: "https://www.google.ca/maps/search/"+inputURI}, undefined);
+			chrome.tabs.getSelected(undefined, function(tab) {
+				chrome.tabs.update(tab.id, {url: "https://www.google.ca/maps/search/" + inputURI}, undefined);
 			}); 
 		}
 
@@ -95,13 +96,13 @@ function suggest(inputString, suggestions) {
 
 	// suggestions is an array of SuggestResults 
 
-	if(inputString == "") {
+	if (inputString == "") {
 		return;
 	}
 
 	// if the search query contains "to", split it up and find suggestions for both strings
 
-	if (inputString.indexOf(" to") > -1) {
+	if (~inputString.indexOf(" to")) {
 		// console.log("Found to")
 		var firstPart = inputString.substring(0, inputString.indexOf(" to"));
 		firstPart = get_correct_search_term(firstPart);
