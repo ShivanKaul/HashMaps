@@ -1,6 +1,8 @@
 // Citation: https://developer.chrome.com/extensions/optionsV2
 // Saves options to chrome.storage.sync.
+
 function save_options() {
+
   var home = document.getElementById('home').value;
   var work = document.getElementById('work').value;
 
@@ -19,7 +21,9 @@ function save_options() {
 
 // Restores select box and checkbox state using the preferences
 // stored in chrome.storage.
+
 function restore_options() {
+  
   chrome.storage.sync.get({
     homeAddress: '',
     workAddress: ''
