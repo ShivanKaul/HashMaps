@@ -1,14 +1,10 @@
 HashMaps
 -------------
 
-[HashMaps](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion) lets you search for places and directions straight from the address bar. 
-
-**[Blog entry](http://shivankaulsahib.me/blog/2015/02/28/hashmaps.html).**
-
-[Icon credits](http://www.flaticon.com/authors/freepik).
+[HashMaps](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion) is a Chrome Extension that lets you search for places and directions straight from the address bar. 
 
 ####How to Use:
-In the address bar (called an Omnibox in Chrome), type in # (the hash/pound/hashtag symbol), and press either Space or Tab. Now look for places or directions.
+Install [here](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion). Once installed, in the address bar, type in **#** (the hashtag symbol), and press either Space or Tab. Now look for places or directions.
 
 #####Searching for Places:
 Simply type in the name of the place, and press Enter. Example: "McGill University". [Screencast.](https://www.youtube.com/watch?v=zGTYNvsGLgU)
@@ -18,7 +14,11 @@ Type in the origin and the destination separated by a 'to', and press Enter. Exa
 
 Great for when the internet speed is slow and you don't want to take the unnecessary step of first loading the Google Maps landing page. 
 
+[Blog entry](http://shivankaulsahib.me/blog/2015/02/28/hashmaps.html).
+
+[Icon credits](http://www.flaticon.com/authors/freepik).
+
 ####What's New:
-- Stored **Home** and **Work** locations: There's an Options page for the extension where you can set addresses for your home and work place. Now, when you type in '**Home**' or '**Work**' as a search query the extension will automatically use your stored address.
+- Stored **Home** and **Work** locations: There's an Options page for the extension where you can set addresses for your home and work place. This Options page can be easily accessed by clicking on the extension icon next to the address bar. Now, when you type in '**Home**' or '**Work**' as a search query the extension will automatically use your stored address for that location.
 - Region Biasing: Using some Geolocating, I'm able to get the user's country code which I then use to bias the Google Maps API results, [extremely unsuccessfully](http://stackoverflow.com/questions/2647086/googles-geocoder-returns-wrong-country-ignoring-the-region-hint). 
 - Suggestions! Start typing and see suggested locations. Don't worry, your search history isn't saved at all: all suggestions are created dynamically when you type by smartly interacting with the Google Maps API.
