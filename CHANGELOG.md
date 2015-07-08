@@ -1,5 +1,8 @@
 ### Changelog
 
+###1.3.6
+- Centered heading for Options
+
 #### 1.3.5
 - Prettier Options menu
 - Paying back technical debt: code cleanup
