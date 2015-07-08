@@ -6,6 +6,7 @@ var home, work;
 	- used to catch keywords entered by user and use them
  */
 function get_options() {
+
   chrome.storage.sync.get({
   	homeAddress: '',
   	workAddress: ''
@@ -13,6 +14,7 @@ function get_options() {
     home = items.homeAddress;
     work = items.workAddress;
   });
+  
 }
 
 /* 
@@ -51,7 +53,7 @@ function get_options() {
 			origin = get_correct_search_term(origin);
 
 			// ensure that the string is parsed correctly around "to"
-			
+
 			dest = inputString.substring(inputString.indexOf(" to") + 4);
 			dest = dest.trim();
 	}
