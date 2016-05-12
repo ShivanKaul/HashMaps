@@ -22,16 +22,15 @@ function get_options() {
 	- if user has defined addresses, use them instead of 'home' or 'work' or whatever and encode.
 	- else, simply uri encode
  */
-function get_correct_search_term(term) {
+function get_correct_search_term(rawTerm) {
 
-    term = term.trim()
+    var term = rawTerm.trim().toLowerCase();
 
     if ("home" === term && home !== "") {
         return encodeURIComponent(home);
     } else if ("work" === term && work !== "") {
         return encodeURIComponent(work);
     } else return encodeURIComponent(term);
-
 }
 
 /*
