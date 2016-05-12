@@ -1,7 +1,7 @@
 HashMaps
 -------------
 
-[HashMaps](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion) is a Chrome Extension that lets you search for places and directions straight from the address bar. 
+[HashMaps](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion) is a Chrome Extension that lets you search for places and directions straight from the address bar.
 
 ####How to Use:
 Install [here](https://chrome.google.com/webstore/detail/hashmaps/ncbcjemlgfabkoebboepbofhbmhekion). Once installed, in the address bar, type in **#**, and press either Space or Tab. Now look for places or directions.
@@ -25,9 +25,10 @@ That, and I'm lazy.
 [2015-02-28: HashMaps](http://shivankaulsahib.me/blog/2015/02/28/hashmaps.html).
 
 ####Credits:
-Icon credits: [Freepik](http://www.flaticon.com/authors/freepik).
+- Icon credits: [Freepik](http://www.flaticon.com/authors/freepik).
+- [ipinfo.io](https://ipinfo.io/)
 
 ####What's New:
 - Stored **Home** and **Work** locations: There's an Options page for the extension where you can set addresses for your home and work place. This Options page can be easily accessed by clicking on the extension icon next to the address bar. Now, when you type in '**Home**' or '**Work**' as a search query the extension will automatically use your stored address for that location.
-- Region Biasing: Using some Geolocating, I'm able to get the user's country code which I then use to bias the Google Maps API results, [extremely unsuccessfully](http://stackoverflow.com/questions/2647086/googles-geocoder-returns-wrong-country-ignoring-the-region-hint). 
+- Region Biasing: Using some Geolocating, I'm able to get the user's country code which I then use to bias the Google Maps API results, [extremely unsuccessfully](http://stackoverflow.com/questions/2647086/googles-geocoder-returns-wrong-country-ignoring-the-region-hint).
 - Suggestions! Start typing and see suggested locations. Don't worry, your search history isn't saved at all: all suggestions are created dynamically when you type by smartly interacting with the Google Maps API.
