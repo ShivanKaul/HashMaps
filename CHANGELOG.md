@@ -1,6 +1,6 @@
 ### Changelog
 
-#### 1.3.6
+#### 1.3.6/7
 - Centered heading for Options
 - Get ccTLD dynamically for region biasing and redirecting
 
