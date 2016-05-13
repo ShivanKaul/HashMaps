@@ -56,10 +56,10 @@ function parse_input(inputString) {
     }
 
     if (dest !== "") {
-        dest = get_correct_search_term(dest)
+        dest = get_correct_search_term(dest);
     }
 
-    return [origin, dest]
+    return [origin, dest];
 }
 
 /*
@@ -95,7 +95,7 @@ function navigationBegin(inputString) {
 
 	if (!country) {
 	    get('http://ipinfo.io/json', navigationContinue.bind(null, inputString));
-	} else navigationContinue(inputString, null)
+	} else navigationContinue(inputString, null);
 }
 /*
 	function navigationContinue
@@ -227,7 +227,7 @@ function suggestContinue(inputString, suggestions, error) {
         }();
 
         // Final suggestions list
-        all = []
+        all = [];
 
         // Send origin request
         $.ajax({
@@ -235,7 +235,7 @@ function suggestContinue(inputString, suggestions, error) {
             dataType: "json",
             statusCode: {
                 502: function() {
-                    console.log("Error 502 thrown.")
+                    console.log("Error 502 thrown.");
                 }
             },
             success: function(queryResultO) {
@@ -244,13 +244,13 @@ function suggestContinue(inputString, suggestions, error) {
 
                 if (Oresults.length == 0) return;
 
-                var Osuggestions = []
+                var Osuggestions = [];
 
                 // Get list of max 3 suggestions for origin
 
                 for (i = 0; i < Math.min(3, Oresults.length); i++) {
-                    var name = Oresults[i].formatted_address
-                    Osuggestions.push(name)
+                    var name = Oresults[i].formatted_address;
+                    Osuggestions.push(name);
                 }
 
                 // On success...
@@ -261,18 +261,18 @@ function suggestContinue(inputString, suggestions, error) {
 
                     if (Dresults.length == 0) return;
 
-                    var Dsuggestions = []
+                    var Dsuggestions = [];
 
                     for (i = 0; i < Math.min(2, Dresults.length); i++) {
-                        var name = Dresults[i].formatted_address
-                        Dsuggestions.push(name)
+                        var name = Dresults[i].formatted_address;
+                        Dsuggestions.push(name);
                     }
 
                     for (i = 0; i < Osuggestions.length; i++) {
 
                         for (j = 0; j < Dsuggestions.length; j++) {
-                            var origin = Osuggestions[i]
-                            var dest = Dsuggestions[j]
+                            var origin = Osuggestions[i];
+                            var dest = Dsuggestions[j];
                             all.push({
                                 "content": origin + " to " + dest,
                                 "description": "Did you mean: " + '<match>' + origin + '</match>' + " to " + '<match>' + dest + '</match>'
@@ -280,7 +280,7 @@ function suggestContinue(inputString, suggestions, error) {
                         }
                     }
                     // Send suggestions
-                    suggestions(all)
+                    suggestions(all);
                 })
             }
         });
