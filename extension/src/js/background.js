@@ -294,3 +294,9 @@ chrome.omnibox.onInputChanged.addListener(get_options);
 chrome.omnibox.onInputChanged.addListener(suggestBegin);
 chrome.omnibox.onInputEntered.addListener(navigationBegin);
 chrome.omnibox.setDefaultSuggestion({ "description": "Get directions for %s" });
+// Add uninstall link
+// Set uninstall URL
+var uninstallGoogleFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLSd_Oe7gnVbaKACY1ErzWh8DiEf8FqOvEWsZC_VckcXm-TSODg/viewform';
+if (chrome.runtime.setUninstallURL) {
+    chrome.runtime.setUninstallURL(uninstallGoogleFormLink);
+}
