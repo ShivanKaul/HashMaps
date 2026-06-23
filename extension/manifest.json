@@ -14,9 +14,6 @@
   "permissions": [
     "storage"
   ],
-  "host_permissions": [
-    "https://ipinfo.io/*"
-  ],
   "action": {
     "default_icon": {
       "16": "images/icon-16.png",

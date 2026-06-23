@@ -12,8 +12,3 @@ Simply type in the name of the place, and press Enter. Example: "McGill Universi
 
 ### Searching for Directions:
 Type in the origin and the destination separated by a 'to', and press Enter. Example: "Montreal to New York". [Screencast.](https://www.youtube.com/watch?v=VPGPeumO-d4)
-
-## Credits:
-
-- Icon credits: [Freepik](http://www.flaticon.com/authors/freepik).
-- [ipinfo.io](https://ipinfo.io/)
