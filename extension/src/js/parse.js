@@ -33,7 +33,7 @@ export const parseInput = (inputString, home, work) => {
     const dest = inputString.slice(match.index + match[0].length);
     return [
       getCorrectSearchTerm(origin, home, work),
-      getCorrectSearchTerm(dest, home, work)
+      getCorrectSearchTerm(dest, home, work),
     ];
   }
   return [getCorrectSearchTerm(inputString, home, work), ''];

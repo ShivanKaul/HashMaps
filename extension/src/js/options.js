@@ -6,17 +6,20 @@ const save_options = () => {
   const home = document.getElementById('home').value;
   const work = document.getElementById('work').value;
 
-  chrome.storage.sync.set({
-    homeAddress: home,
-    workAddress: work
-  }, () => {
-    // Update status to let user know options were saved.
-    const status = document.getElementById('status');
-    status.textContent = 'Addresses saved!';
-    setTimeout(() => {
-      status.textContent = '';
-    }, 1250);
-  });
+  chrome.storage.sync.set(
+    {
+      homeAddress: home,
+      workAddress: work,
+    },
+    () => {
+      // Update status to let user know options were saved.
+      const status = document.getElementById('status');
+      status.textContent = 'Addresses saved!';
+      setTimeout(() => {
+        status.textContent = '';
+      }, 1250);
+    },
+  );
 };
 
 /**
@@ -24,13 +27,16 @@ const save_options = () => {
  * form fields.
  */
 const restore_options = () => {
-  chrome.storage.sync.get({
-    homeAddress: '',
-    workAddress: ''
-  }, (items) => {
-    document.getElementById('home').value = items.homeAddress;
-    document.getElementById('work').value = items.workAddress;
-  });
+  chrome.storage.sync.get(
+    {
+      homeAddress: '',
+      workAddress: '',
+    },
+    (items) => {
+      document.getElementById('home').value = items.homeAddress;
+      document.getElementById('work').value = items.workAddress;
+    },
+  );
 };
 
 document.addEventListener('DOMContentLoaded', restore_options);
