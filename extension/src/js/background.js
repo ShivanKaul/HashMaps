@@ -48,17 +48,26 @@ const mapsBase = (countryCode) =>
   `https://www.google${countryCode ? `.${countryCode}` : '.com'}/maps`;
 
 /**
+ * Opens a URL honouring the omnibox disposition: reuse the current tab, or
+ * open a new foreground/background tab as Chrome requests.
+ */
+const openUrl = (url, disposition) => {
+  if (disposition === 'currentTab') {
+    chrome.tabs.update({ url });
+  } else {
+    chrome.tabs.create({ url, active: disposition !== 'newBackgroundTab' });
+  }
+};
+
+/**
  * Navigates to Google Maps with a single search term (one place) or to
  * directions (two places). Invoked by the omnibox on input entered.
  */
-const navigate = async (inputString) => {
-  // Empty query: open the Google Maps search landing page in a new tab.
+const navigate = async (inputString, disposition) => {
+  // Empty query: open the Google Maps search landing page.
   if (inputString === '') {
     const countryCode = await getCountry();
-    chrome.tabs.create({
-      url: `${mapsBase(countryCode)}/search/`,
-      active: true,
-    });
+    openUrl(`${mapsBase(countryCode)}/search/`, disposition);
     return;
   }
 
@@ -74,7 +83,7 @@ const navigate = async (inputString) => {
   // One place => search; two places => directions between them.
   const url =
     dest === '' ? `${base}/search/${origin}` : `${base}/dir/${origin}/${dest}`;
-  chrome.tabs.update({ url });
+  openUrl(url, disposition);
 };
 
 chrome.omnibox.setDefaultSuggestion({ description: 'Get directions for %s' });

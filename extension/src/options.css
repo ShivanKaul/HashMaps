@@ -1,6 +1,6 @@
 body { 
 	padding: 10px;
-	font-family: 'Lato', serif;
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 h1 {
