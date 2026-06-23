@@ -25,4 +25,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	echo "Done."
 fi
 
-zip -r "$name-$version".zip extension/
+# Zip the *contents* of extension/ so manifest.json sits at the archive root,
+# as the Chrome Web Store requires (a nested folder is rejected).
+(cd extension && zip -r "../$name-$version.zip" .)
