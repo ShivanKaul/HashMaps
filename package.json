@@ -1,0 +1,30 @@
+{
+  "name": "hashmaps",
+  "version": "1.4.0",
+  "description": "Adding Google Maps search to your address bar.",
+  "type": "module",
+  "main": "extension/src/js/background.js",
+  "scripts": {
+    "lint": "eslint --fix .",
+    "lint-check": "eslint .",
+    "format": "prettier --write .",
+    "format-check": "prettier --check .",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShivanKaul/hashmaps.git"
+  },
+  "author": "ShivanKaul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShivanKaul/hashmaps/issues"
+  },
+  "homepage": "https://github.com/ShivanKaul/hashmaps#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.2.0",
+    "eslint": "^9.2.0",
+    "globals": "^15.2.0",
+    "prettier": "^3.8.4"
+  }
+}
